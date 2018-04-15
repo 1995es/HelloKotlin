@@ -1,6 +1,6 @@
 # HELLO KOTLIN
 
-A simple Kotlin Hello World app
+A Hello World app written in Kotlin
 
 ## Description
 
