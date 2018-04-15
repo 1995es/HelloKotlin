@@ -11,32 +11,49 @@ import java.util.Random
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    /*
+    Int vars
+     */
     private var counter: Int = 0
-    private lateinit var textView: TextView
+    private var actualColor: Int = 0;
+
+    /*
+    lateinit vars
+     */
     private lateinit var layout:ConstraintLayout
-    private lateinit var colors: MutableList<Int>
+    private lateinit var textView: TextView
     private lateinit var primaryButton: Button
     private lateinit var secondaryButton: Button
-
-    private var actualColor: Int = 0;
+    private lateinit var colors: MutableList<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
+        Load elements
+         */
         layout = findViewById<ConstraintLayout>(R.id.main_layout) as ConstraintLayout
+        textView = findViewById<TextView>(R.id.textview1) as TextView
         primaryButton = findViewById<Button>(R.id.button1) as Button
         secondaryButton = findViewById<Button>(R.id.button2) as Button
-        textView = findViewById<TextView>(R.id.textview1) as TextView
 
-        textView.setTextColor(Color.BLACK)
+        /*
+        Set default configuration
+         */
         layout.setBackgroundColor(Color.WHITE)
+        textView.setTextColor(Color.BLACK)
 
+        /*
+        Create the color list
+         */
         colors = mutableListOf(Color.GRAY, Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.RED, Color.YELLOW, Color.CYAN)
 
+        /*
+        Set OnClick listeners
+         */
         primaryButton.setOnClickListener(this)
         secondaryButton.setOnClickListener(this)
-
 
     }
 
@@ -44,13 +61,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id) {
             R.id.button1 ->
             {
-                //Toast.makeText(this,"Dont touch me!",Toast.LENGTH_SHORT).show()
-
+                /*
+                Counter
+                 */
                 counter += 1
                 textView.text= counter.toString()
 
                 /*
-                
+                Choose a new color
                  */
                 var newColor = colors.get(Random().nextInt(colors.size))
                 while(actualColor == newColor){
@@ -62,9 +80,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.button2 ->
             {
+                /*
+                Set default configuration
+                 */
                 counter = 0
                 textView.text = getString(R.string.home_text)
-
                 layout.setBackgroundColor(Color.WHITE)
             }
         }
